@@ -1,0 +1,1 @@
+# ext-sticky-pdp-media
