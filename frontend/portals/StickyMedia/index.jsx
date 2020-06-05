@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { scrolledTopOffset } from '../../config';
+import { Portal } from '@shopgate/engage/components';
 
 const styles = {
   wrapper: css({
@@ -18,6 +19,7 @@ const styles = {
 const StickyMedia = ({ children }) => (
   <div className={styles.wrapper}>
     {children}
+    <Portal name="product.sticky-media.after" />
   </div>
 );
 
