@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'glamor';
-import { scrolledTopOffset } from '../../config';
 import { Portal } from '@shopgate/engage/components';
+import { scrolledTopOffset } from '../../config';
 
 const styles = {
   wrapper: css({
     position: 'sticky',
     top: scrolledTopOffset,
-    zIndex: 99,
+    zIndex: 1,
   }),
 };
 
