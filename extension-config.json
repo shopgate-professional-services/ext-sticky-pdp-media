@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "id": "@shopgate-project/sticky-pdp-media",
+  "components": [
+    {
+      "id": "StickyMedia",
+      "path": "frontend/portals/StickyMedia/index.jsx",
+      "target": "component.product-media-section",
+      "type": "portals"
+    }
+  ],
+  "configuration": {
+    "scrolledTopOffset": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "-100vw",
+      "params": {
+        "label": "CSS value for 'top' property. It will move the image by this value to top when scrolled",
+        "type": "text",
+        "required": true
+      }
+    }
+  },
+  "steps": []
+}
