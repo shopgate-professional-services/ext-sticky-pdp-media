@@ -17,10 +17,12 @@ const styles = {
  * @return {JSX}
  */
 const StickyMedia = ({ children }) => (
-  <div className={styles.wrapper}>
-    {children}
-    <Portal name="product.sticky-media.after" />
-  </div>
+  <Portal name="product.sticky-media">
+    <div className={styles.wrapper}>
+      {children}
+      <Portal name="product.sticky-media.after" />
+    </div>
+  </Portal>
 );
 
 StickyMedia.propTypes = {
