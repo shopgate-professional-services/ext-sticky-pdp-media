@@ -26,7 +26,9 @@
       "default": {
         "enabled": true,
         "ratio": 0.4,
-        "styles": null
+        "styles": {
+          "filter": "blur(3px)"
+        }
       },
       "params": {
         "label": "Apply given styles when scroll ratio is reached (bottom shadows, etc.)",

@@ -15,7 +15,7 @@ const styles = {
     position: 'sticky',
     top: scrolledTopOffset,
     zIndex: 1,
-    ' > div:first-child': {
+    'div > div:first-child': {
       transition: 'box-shadow 0.4s ease-out',
     },
   }),
@@ -45,13 +45,18 @@ const StickyMedia = ({ children }) => {
         <Portal name="product.sticky-media">
           <div
             className={css(
-              styles.wrapper,
-              ratio <= transitionRatio ? styles.transition : null,
-              ratio <= transitionRatio ? transitionStyles : null
+              styles.wrapper
             )}
-            ref={setRef}
           >
-            {children}
+            <div
+              className={css(
+                ratio <= transitionRatio ? styles.transition : null,
+                ratio <= transitionRatio ? transitionStyles : null
+              )}
+              ref={setRef}
+            >
+              {children}
+            </div>
             <Portal name="product.sticky-media.after" />
           </div>
         </Portal>
