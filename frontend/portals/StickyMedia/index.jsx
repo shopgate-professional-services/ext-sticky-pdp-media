@@ -16,7 +16,7 @@ const styles = {
     top: scrolledTopOffset,
     zIndex: 1,
     ' > div:first-child': {
-      transition: 'box-shadow 0.1s ease-out',
+      transition: 'box-shadow 0.4s ease-out',
     },
   }),
   // Default transitions

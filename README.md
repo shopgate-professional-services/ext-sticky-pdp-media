@@ -11,9 +11,9 @@ The value needs to match the image dimension settings from theme. -100vw works f
 ### scrollStyles (json)
 Apply given styles to sticky media when scroll ratio is reached.
 
-- `enabled` (boolean) Enable applying styles on scroll ratio 
-- `ratio` (number) Scroll ratio when apply styles 
-- `styles` (json css) Applying styles 
+- `enabled` (boolean) Enable applying styles on scroll ratio
+- `ratio` (number) Scroll ratio when apply styles
+- `styles` (json css) Applying styles
 
 Example:
 ```json
@@ -21,7 +21,7 @@ Example:
   "scrolledTopOffset": "-100vw",
   "scrollStyles": {
     "enabled": true,
-    "ratio": 0.6,
+    "ratio": 0.4,
     "styles": null
   }
 }
