@@ -15,12 +15,19 @@ const styles = {
     position: 'sticky',
     top: scrolledTopOffset,
     zIndex: 1,
-    ' > div:first-child': {
+    ' > div > div:first-child': {
       transition: 'box-shadow 0.4s ease-out',
     },
   }),
   // Default transitions
-  transition: { ' > div:first-child': { boxShadow: '0 12px 8px rgba(0, 0, 0, 0.30)' } },
+  transition: {
+    ' > div:first-child': {
+      boxShadow: '0 12px 8px rgba(0, 0, 0, 0.30)',
+    },
+    ' [data-test-id="image"]': {
+      ...transitionStyles,
+    },
+  },
 };
 
 /**
@@ -32,7 +39,7 @@ const StickyMedia = ({ children }) => {
     return (
       <Portal name="product.sticky-media">
         <div className={styles.wrapper}>
-          {children}
+          <div>{children}</div>
           <Portal name="product.sticky-media.after" />
         </div>
       </Portal>
@@ -44,14 +51,16 @@ const StickyMedia = ({ children }) => {
       {({ ratio, setRef }) => (
         <Portal name="product.sticky-media">
           <div
-            className={css(
-              styles.wrapper,
-              ratio <= transitionRatio ? styles.transition : null,
-              ratio <= transitionRatio ? transitionStyles : null
-            )}
-            ref={setRef}
+            className={styles.wrapper}
           >
-            {children}
+            <div
+              className={css(
+                ratio <= transitionRatio ? styles.transition : null,
+              )}
+              ref={setRef}
+            >
+              {children}
+            </div>
             <Portal name="product.sticky-media.after" />
           </div>
         </Portal>
