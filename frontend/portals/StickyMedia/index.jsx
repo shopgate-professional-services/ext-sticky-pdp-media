@@ -20,7 +20,14 @@ const styles = {
     },
   }),
   // Default transitions
-  transition: { ' > div:first-child': { boxShadow: '0 12px 8px rgba(0, 0, 0, 0.30)' } },
+  transition: {
+    ' > div:first-child': {
+      boxShadow: '0 12px 8px rgba(0, 0, 0, 0.30)',
+    },
+    ' [data-test-id="image"]': {
+      ...transitionStyles,
+    },
+  },
 };
 
 /**
@@ -32,7 +39,7 @@ const StickyMedia = ({ children }) => {
     return (
       <Portal name="product.sticky-media">
         <div className={styles.wrapper}>
-          {children}
+          <div>{children}</div>
           <Portal name="product.sticky-media.after" />
         </div>
       </Portal>
@@ -49,7 +56,6 @@ const StickyMedia = ({ children }) => {
             <div
               className={css(
                 ratio <= transitionRatio ? styles.transition : null,
-                ratio <= transitionRatio ? transitionStyles : null
               )}
               ref={setRef}
             >
