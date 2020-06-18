@@ -15,7 +15,7 @@ const styles = {
     position: 'sticky',
     top: scrolledTopOffset,
     zIndex: 1,
-    'div > div:first-child': {
+    ' > div > div:first-child': {
       transition: 'box-shadow 0.4s ease-out',
     },
   }),
@@ -44,9 +44,7 @@ const StickyMedia = ({ children }) => {
       {({ ratio, setRef }) => (
         <Portal name="product.sticky-media">
           <div
-            className={css(
-              styles.wrapper
-            )}
+            className={styles.wrapper}
           >
             <div
               className={css(
