@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "id": "@shopgate-project/sticky-pdp-media",
   "components": [
     {
@@ -27,7 +27,8 @@
         "enabled": true,
         "ratio": 0.4,
         "styles": {
-          "filter": "blur(3px)"
+          "filter": "blur(3px)",
+          "backdropFilter": "blur(3px)"
         }
       },
       "params": {
