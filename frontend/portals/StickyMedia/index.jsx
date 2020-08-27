@@ -14,7 +14,7 @@ const styles = {
   wrapper: css({
     position: 'sticky',
     top: scrolledTopOffset,
-    zIndex: 1,
+    zIndex: 2,
     ' > div > div:first-child': {
       transition: 'box-shadow 0.4s ease-out',
     },
