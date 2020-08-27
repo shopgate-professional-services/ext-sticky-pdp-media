@@ -26,10 +26,7 @@
       "default": {
         "enabled": true,
         "ratio": 0.4,
-        "styles": {
-          "filter": "blur(3px)",
-          "backdropFilter": "blur(3px)"
-        }
+        "styles": null
       },
       "params": {
         "label": "Apply given styles when scroll ratio is reached (bottom shadows, etc.)",

@@ -22,7 +22,10 @@ Example:
   "scrollStyles": {
     "enabled": true,
     "ratio": 0.4,
-    "styles": null
+    "styles": {
+      "filter": "blur(3px)",
+      "backdropFilter": "blur(3px)"
+    }
   }
 }
 ```
