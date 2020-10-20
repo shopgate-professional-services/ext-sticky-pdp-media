@@ -1,6 +1,6 @@
 {
   "name": "@shopgate-project/sticky-pdp-media",
-  "version": "1.0.3",
+  "version": "1.1.0-beta.1",
   "description": "Sticky media section on pdp extension",
   "license": "Apache-2.0",
   "scripts": {
