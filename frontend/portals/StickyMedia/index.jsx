@@ -48,11 +48,13 @@ const StickyMedia = ({ children }) => {
 
   if (!transitionsEnabled) {
     return (
-      <Portal name="product.sticky-media">
-        <div className={styles.wrapper}>
-          <div>{children}</div>
-          <Portal name="product.sticky-media.after" />
-        </div>
+      <Portal name="product.sticky-media" props={{ media: children }}>
+        {({ media }) => (
+          <div className={styles.wrapper}>
+            <div>{media}</div>
+            <Portal name="product.sticky-media.after" />
+          </div>
+        )}
       </Portal>
     );
   }
@@ -69,19 +71,21 @@ const StickyMedia = ({ children }) => {
       </IntersectionVisibility>
       <IntersectionVisibility>
         {({ ratio, setRef }) => (
-          <Portal name="product.sticky-media">
-            <div className={styles.wrapper}>
-              <div
-                className={css(
-                  ratio <= transitionRatio ? styles.transition : null,
-                  isSticky ? styles.transition : null
-                )}
-                ref={setRef}
-              >
-                {children}
+          <Portal name="product.sticky-media" props={{ media: children }}>
+            {({ media }) => (
+              <div className={styles.wrapper}>
+                <div
+                  className={css(
+                    ratio <= transitionRatio ? styles.transition : null,
+                    isSticky ? styles.transition : null
+                  )}
+                  ref={setRef}
+                >
+                  {media}
+                </div>
+                <Portal name="product.sticky-media.after" />
               </div>
-              <Portal name="product.sticky-media.after" />
-            </div>
+            )}
           </Portal>
         )}
       </IntersectionVisibility>
