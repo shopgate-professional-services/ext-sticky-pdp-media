@@ -46,9 +46,15 @@ const styles = {
 const StickyMedia = ({ children }) => {
   const [isSticky, setIsSticky] = useState(false);
 
+  const childs = React.Children.toArray(children);
+  // [0] => ProductDiscountBadge
+  // [1] => ProductImageSlider/ProductMediaSlider
+  // take always last child
+  const child = childs[childs.length - 1];
+
   if (!transitionsEnabled) {
     return (
-      <Portal name="product.sticky-media" props={{ media: children }}>
+      <Portal name="product.sticky-media" props={{ media: child }}>
         {({ media }) => (
           <div className={styles.wrapper}>
             <div>{media}</div>
@@ -71,7 +77,7 @@ const StickyMedia = ({ children }) => {
       </IntersectionVisibility>
       <IntersectionVisibility>
         {({ ratio, setRef }) => (
-          <Portal name="product.sticky-media" props={{ media: children }}>
+          <Portal name="product.sticky-media" props={{ media: child }}>
             {({ media }) => (
               <div className={styles.wrapper}>
                 <div

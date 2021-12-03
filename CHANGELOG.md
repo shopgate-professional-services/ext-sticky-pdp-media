@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.1]
+- fixed: support for pwa 6.18.6
+
 ## [1.0.1]
 - changed scrollStyles default values
 
