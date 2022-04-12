@@ -12,6 +12,6 @@
     "eslint": "^6.8.0"
   },
   "peerDependencies": {
-    "@shopgate/engage": "^6.11.0"
+    "@shopgate/engage": "^6.18.7"
   }
 }

@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.2]
+- fixed: support for pwa 6.18.7
+
 ## [1.1.1]
 - fixed: support for pwa 6.18.6
 
@@ -14,7 +17,3 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [1.0.0]
 - initial release
-
-[Unreleased]: https://github.com/shopgate-professional-services/ext-sticky-pdp-media/compare/v1.0.1...HEAD
-[1.0.1]: https://github.com/shopgate-professional-services/ext-sticky-pdp-media/releases/v1.0.1
-[1.0.0]: https://github.com/shopgate-professional-services/ext-sticky-pdp-media/releases/v1.0.0

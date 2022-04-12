@@ -46,7 +46,7 @@ const styles = {
 const StickyMedia = ({ children }) => {
   const [isSticky, setIsSticky] = useState(false);
 
-  const childs = React.Children.toArray(children);
+  const childs = React.Children.toArray(children.props.children);
   // [0] => ProductDiscountBadge
   // [1] => ProductImageSlider/ProductMediaSlider
   // take always last child
