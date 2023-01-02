@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { IntersectionVisibility, Portal } from '@shopgate/engage/components';
 import { scrolledTopOffset, scrollStyles } from '../../config';
+import connect from './connector';
 
 const {
   enabled: transitionsEnabled,
@@ -43,15 +44,18 @@ const styles = {
  * @param {Object} props Props
  * @return {JSX}
  */
-const StickyMedia = ({ children }) => {
+const StickyMedia = ({ children, getDeviceInformation }) => {
   const [isSticky, setIsSticky] = useState(false);
 
+  // as this sticky media has issues in tablets so it will be disabled for them.
+  if (getDeviceInformation.type === 'tablet') {
+    return children;
+  }
   const childs = React.Children.toArray(children.props.children);
   // [0] => ProductDiscountBadge
   // [1] => ProductImageSlider/ProductMediaSlider
   // take always last child
   const child = childs[childs.length - 1];
-
   if (!transitionsEnabled) {
     return (
       <Portal name="product.sticky-media" props={{ media: child }}>
@@ -101,6 +105,9 @@ const StickyMedia = ({ children }) => {
 
 StickyMedia.propTypes = {
   children: PropTypes.node.isRequired,
+  getDeviceInformation: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default StickyMedia;
+export default connect(StickyMedia);
