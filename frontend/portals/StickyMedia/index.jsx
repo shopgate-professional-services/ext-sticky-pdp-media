@@ -20,13 +20,6 @@ const styles = {
       transition: 'box-shadow 0.4s ease-out',
     },
   }),
-  wrapperTablet: css({
-    top: scrolledTopOffset,
-    zIndex: 2,
-    ' > div > div:first-child': {
-      transition: 'box-shadow 0.4s ease-out',
-    },
-  }),
   stickyTrigger: css({
     position: 'absolute',
     top: 0,
@@ -41,11 +34,6 @@ const styles = {
       boxShadow: '0 12px 8px rgba(0, 0, 0, 0.30)',
       ...transitionStyles,
     },
-    ' [data-test-id="image"]': {
-      ...transitionStyles,
-    },
-  },
-  transitionTablet: {
     ' [data-test-id="image"]': {
       ...transitionStyles,
     },
@@ -68,20 +56,13 @@ const StickyMedia = ({ children, getDeviceInformation }) => {
     );
   }
 
-  const childs = React.Children.toArray(children.props.children);
-  // [0] => ProductDiscountBadge
-  // [1] => ProductImageSlider/ProductMediaSlider
-  // take always last child
-  const child = childs[childs.length - 1];
   if (!transitionsEnabled) {
     return (
-      <Portal name="product.sticky-media" props={{ media: child }}>
-        {({ media }) => (
-          <div className={isTablet ? styles.wrapperTablet : styles.wrapper}>
-            <div>{media}</div>
-            <Portal name="product.sticky-media.after" />
-          </div>
-        )}
+      <Portal name="product.sticky-media">
+        <div className={styles.wrapper}>
+          <div>{children}</div>
+          <Portal name="product.sticky-media.after" />
+        </div>
       </Portal>
     );
   }
@@ -98,24 +79,22 @@ const StickyMedia = ({ children, getDeviceInformation }) => {
       </IntersectionVisibility>
       <IntersectionVisibility>
         {({ ratio, setRef }) => (
-          <Portal name="product.sticky-media" props={{ media: child }}>
-            {({ media }) => (
-              <div className={isTablet ? styles.wrapperTablet : styles.wrapper}>
-                <div
-                  className={css(
-                    // eslint-disable-next-line no-nested-ternary
-                    ratio <= transitionRatio ?
-                      (isTablet ? styles.transitionTablet : styles.transition) : null,
-                    // eslint-disable-next-line no-nested-ternary
-                    isSticky ? (isTablet ? styles.transitionTablet : styles.transition) : null
-                  )}
-                  ref={setRef}
-                >
-                  {media}
-                </div>
-                <Portal name="product.sticky-media.after" />
+          <Portal name="product.sticky-media">
+            <div className={styles.wrapper}>
+              <div
+                className={css(
+                  // eslint-disable-next-line no-nested-ternary
+                  ratio <= transitionRatio ?
+                    (styles.transition) : null,
+                  // eslint-disable-next-line no-nested-ternary
+                  isSticky ? (styles.transition) : null
+                )}
+                ref={setRef}
+              >
+                {children}
               </div>
-            )}
+              <Portal name="product.sticky-media.after" />
+            </div>
           </Portal>
         )}
       </IntersectionVisibility>
