@@ -15,7 +15,7 @@ const styles = {
   wrapper: css({
     position: 'sticky',
     top: scrolledTopOffset,
-    zIndex: 2,
+    zIndex: 1001,
     ' > div > div:first-child': {
       transition: 'box-shadow 0.4s ease-out',
     },
@@ -47,16 +47,8 @@ const styles = {
 const StickyMedia = ({ children, getDeviceInformation }) => {
   const [isSticky, setIsSticky] = useState(false);
   const isTablet = getDeviceInformation.type === 'tablet';
-  if (isTablet) {
-    return (
-      <Portal name="product.sticky-media.tablet" props={null}>
-        {children}
-        <Portal name="product.sticky-media.tablet.after" />
-      </Portal>
-    );
-  }
 
-  if (!transitionsEnabled) {
+  if (transitionsEnabled || isTablet) {
     return (
       <Portal name="product.sticky-media">
         <div className={styles.wrapper}>
