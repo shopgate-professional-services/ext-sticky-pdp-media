@@ -75,10 +75,8 @@ const StickyMedia = ({ children, getDeviceInformation }) => {
             <div className={styles.wrapper}>
               <div
                 className={css(
-                  // eslint-disable-next-line no-nested-ternary
                   ratio <= transitionRatio ?
                     (styles.transition) : null,
-                  // eslint-disable-next-line no-nested-ternary
                   isSticky ? (styles.transition) : null
                 )}
                 ref={setRef}
