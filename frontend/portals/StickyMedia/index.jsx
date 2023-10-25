@@ -48,7 +48,7 @@ const StickyMedia = ({ children, getDeviceInformation }) => {
   const [isSticky, setIsSticky] = useState(false);
   const isTablet = getDeviceInformation.type === 'tablet';
 
-  if (transitionsEnabled || isTablet) {
+  if (!transitionsEnabled || isTablet) {
     return (
       <Portal name="product.sticky-media">
         <div className={styles.wrapper}>
