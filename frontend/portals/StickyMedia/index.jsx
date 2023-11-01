@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from 'glamor';
 import { IntersectionVisibility, Portal } from '@shopgate/engage/components';
 import { scrolledTopOffset, scrollStyles } from '../../config';
+import connect from './connector';
 
 const {
   enabled: transitionsEnabled,
@@ -14,7 +15,7 @@ const styles = {
   wrapper: css({
     position: 'sticky',
     top: scrolledTopOffset,
-    zIndex: 2,
+    zIndex: 1001,
     ' > div > div:first-child': {
       transition: 'box-shadow 0.4s ease-out',
     },
@@ -43,24 +44,17 @@ const styles = {
  * @param {Object} props Props
  * @return {JSX}
  */
-const StickyMedia = ({ children }) => {
+const StickyMedia = ({ children, getDeviceInformation }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const isTablet = getDeviceInformation.type === 'tablet';
 
-  const childs = React.Children.toArray(children.props.children);
-  // [0] => ProductDiscountBadge
-  // [1] => ProductImageSlider/ProductMediaSlider
-  // take always last child
-  const child = childs[childs.length - 1];
-
-  if (!transitionsEnabled) {
+  if (!transitionsEnabled || isTablet) {
     return (
-      <Portal name="product.sticky-media" props={{ media: child }}>
-        {({ media }) => (
-          <div className={styles.wrapper}>
-            <div>{media}</div>
-            <Portal name="product.sticky-media.after" />
-          </div>
-        )}
+      <Portal name="product.sticky-media">
+        <div className={styles.wrapper}>
+          <div>{children}</div>
+          <Portal name="product.sticky-media.after" />
+        </div>
       </Portal>
     );
   }
@@ -77,21 +71,20 @@ const StickyMedia = ({ children }) => {
       </IntersectionVisibility>
       <IntersectionVisibility>
         {({ ratio, setRef }) => (
-          <Portal name="product.sticky-media" props={{ media: child }}>
-            {({ media }) => (
-              <div className={styles.wrapper}>
-                <div
-                  className={css(
-                    ratio <= transitionRatio ? styles.transition : null,
-                    isSticky ? styles.transition : null
-                  )}
-                  ref={setRef}
-                >
-                  {media}
-                </div>
-                <Portal name="product.sticky-media.after" />
+          <Portal name="product.sticky-media">
+            <div className={styles.wrapper}>
+              <div
+                className={css(
+                  ratio <= transitionRatio ?
+                    (styles.transition) : null,
+                  isSticky ? (styles.transition) : null
+                )}
+                ref={setRef}
+              >
+                {children}
               </div>
-            )}
+              <Portal name="product.sticky-media.after" />
+            </div>
           </Portal>
         )}
       </IntersectionVisibility>
@@ -101,6 +94,9 @@ const StickyMedia = ({ children }) => {
 
 StickyMedia.propTypes = {
   children: PropTypes.node.isRequired,
+  getDeviceInformation: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-export default StickyMedia;
+export default connect(StickyMedia);
